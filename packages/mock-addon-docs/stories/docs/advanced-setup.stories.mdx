@@ -1,11 +1,10 @@
-
-import { Meta } from '@storybook/addon-docs';
-import { Footer } from './footer';
+import { Meta } from "@storybook/addon-docs";
+import { Footer } from "./footer";
 
 <Meta title="Docs/Advanced setup" />
 
 <style>
-    {`
+  {`
         .subheading {
             margin-bottom: 1.5rem;
         }
@@ -18,16 +17,13 @@ import { Footer } from './footer';
 
 You can set <strong>global configuration</strong> for the addon. Go to the `.storybook/preview.js` file and add `mockAddonConfigs` fields with the following properties.
 
-
-
-| Property                 | Description                                                                    | Default |
-| ------------------------ | :----------------------------------------------------------------------------- | :------ |
-| `globalMockData`         | An array of mock objects which will add in every story                         | []      |
-| `ignoreQueryParams`      | Whether or not to ignore query parameters globally                             | false   |
-| `refreshStoryOnUpdate`   | This property re-renders the story if there's any data changes                 | false   |
-| `disableUsingOriginal`   | This property disables the toggle (on/off) option to use the original endpoint | false   |
-| `disable`                | This property disables the panel from all the stories                          | false   |
-
+| Property               | Description                                                                    | Default |
+| ---------------------- | :----------------------------------------------------------------------------- | :------ |
+| `globalMockData`       | An array of mock objects which will add in every story                         | []      |
+| `ignoreQueryParams`    | Whether or not to ignore query parameters globally                             | false   |
+| `refreshStoryOnUpdate` | This property re-renders the story if there's any data changes                 | false   |
+| `disableUsingOriginal` | This property disables the toggle (on/off) option to use the original endpoint | false   |
+| `disable`              | This property disables the panel from all the stories                          | false   |
 
 ```js
 export const parameters = {
@@ -49,19 +45,17 @@ export const parameters = {
 }
 ```
 
-
 <h3 className="subheading">2. Story and Component parameters</h3>
 
 We can set mock data for a <strong>single story </strong> with the parameters
 
 ```js
-
-import React from 'react';
-import { FetchExample } from './index';
+import React from "react";
+import { FetchExample } from "./index";
 
 export default {
-    title: 'Examples/Fetch',
-    component: FetchExample,
+  title: "Examples/Fetch",
+  component: FetchExample,
 };
 
 const Template = () => <FetchExample />;
@@ -69,47 +63,45 @@ const Template = () => <FetchExample />;
 export const FetchCall = Template.bind({});
 
 FetchCall.parameters = {
-    mockData: [
-        {
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            method: 'GET',
-            status: 200,
-            response: {
-                data: 'Hello storybook-addon-mock!',
-            },
-        },
-    ],
+  mockData: [
+    {
+      url: "https://jsonplaceholder.typicode.com/todos/1",
+      method: "GET",
+      status: 200,
+      response: {
+        data: "Hello storybook-addon-mock!",
+      },
+    },
+  ],
 };
-
 ```
 
 We can set mock data for <strong>all stories of a component </strong> using the parameters key on the default CSF export
 
 ```js
-import React from 'react';
-import { FetchExample } from './index';
+import React from "react";
+import { FetchExample } from "./index";
 
 export default {
-    title: 'Examples/Fetch',
-    component: FetchExample,
-    parameters: {
-        mockData: [
-            {
-                url: 'https://jsonplaceholder.typicode.com/todos/1',
-                method: 'GET',
-                status: 200,
-                response: {
-                    data: 'Hello storybook-addon-mock!',
-                },
-            },
-        ],
-    },
+  title: "Examples/Fetch",
+  component: FetchExample,
+  parameters: {
+    mockData: [
+      {
+        url: "https://jsonplaceholder.typicode.com/todos/1",
+        method: "GET",
+        status: 200,
+        response: {
+          data: "Hello storybook-addon-mock!",
+        },
+      },
+    ],
+  },
 };
 
 const Template = () => <FetchExample />;
 
 export const FetchCall = Template.bind({});
-
 ```
 
 <h3 className="subheading">3. Custom response function</h3>
@@ -154,15 +146,16 @@ FetchCall.parameters = {
     ],
 };
 ```
+
 <h3 className="subheading">2. Disable the panel for a story</h3>
 
 ```js
-import React from 'react';
-import { FetchExample } from './index';
+import React from "react";
+import { FetchExample } from "./index";
 
 export default {
-    title: 'Examples/Fetch',
-    component: FetchExample,
+  title: "Examples/Fetch",
+  component: FetchExample,
 };
 
 const Template = () => <FetchExample />;
@@ -170,13 +163,13 @@ const Template = () => <FetchExample />;
 export const FetchCall = Template.bind({});
 
 FetchCall.parameters = {
-    mockAddonConfigs: { disable: true }
+  mockAddonConfigs: { disable: true },
 };
 ```
 
 <Footer
-    title="User guide"
-    subtitle="Navigate the addon panel"
-    actionText="Next"
-    actionLink="Docs/User guide"
+  title="User guide"
+  subtitle="Navigate the addon panel"
+  actionText="Next"
+  actionLink="Docs/User guide"
 />

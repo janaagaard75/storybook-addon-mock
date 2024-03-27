@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import LinkTo from '@storybook/addon-links/react';
+import LinkTo from "@storybook/addon-links/react";
+import PropTypes from "prop-types";
+import React from "react";
 
 const css = `
  * {
@@ -51,26 +51,26 @@ const css = `
 `;
 
 export const Footer = ({ title, subtitle, actionText, actionLink }) => (
-    <>
-        <style>{css}</style>
-        <h4 className="subheading next">Next</h4>
-        <div className="footer">
-            <div className="link-item">
-                <div className="link-item-content">
-                    <strong>{title}</strong>
-                    {subtitle}
-                </div>
-                <LinkTo className="continue" kind={actionLink} story="docs">
-                    {actionText}
-                </LinkTo>
-            </div>
+  <>
+    <style>{css}</style>
+    <h4 className="subheading next">Next</h4>
+    <div className="footer">
+      <div className="link-item">
+        <div className="link-item-content">
+          <strong>{title}</strong>
+          {subtitle}
         </div>
-    </>
+        <LinkTo className="continue" kind={actionLink} story="docs">
+          {actionText}
+        </LinkTo>
+      </div>
+    </div>
+  </>
 );
 
 Footer.propTypes = {
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    actionText: PropTypes.string,
-    actionLink: PropTypes.string,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  actionText: PropTypes.string,
+  actionLink: PropTypes.string,
 };
