@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "requireConfigFile": false,
@@ -19,6 +15,11 @@
     "jest": true
   },
   "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
