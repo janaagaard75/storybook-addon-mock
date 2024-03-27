@@ -3,7 +3,7 @@ import { newMockXhr } from "mock-xmlhttprequest";
 import { match } from "path-to-regexp";
 import { CustomResponse } from "./CustomResponse";
 import { Request } from "./Request";
-import { arrayEquals } from "./array";
+import { arraysContainsTheSameElements } from "./arraysContainsTheSameElements";
 import { defaultResponseHeaders } from "./defaultResponseHeaders";
 import { getResponseHeaderMap } from "./getResponseHeaderMap";
 import { setRequestHeaders } from "./setRequestHeaders";
@@ -116,7 +116,8 @@ export class Faker {
 
   matchQueryParams = (searchParams, requestSearchParams) => {
     return (
-      this.ignoreQueryParams || arrayEquals(searchParams, requestSearchParams)
+      this.ignoreQueryParams ||
+      arraysContainsTheSameElements(searchParams, requestSearchParams)
     );
   };
 
