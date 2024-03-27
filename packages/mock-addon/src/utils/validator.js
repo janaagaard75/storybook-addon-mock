@@ -1,7 +1,7 @@
-import statusTextMap from "../utils/statusMap";
+import { statusTexts } from "../utils/statusTexts";
 
 const methods = ["GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"];
-const statusCodes = Object.keys(statusTextMap);
+const statusCodes = Object.keys(statusTexts);
 
 const isObject = (value) =>
   value && !Array.isArray(value) && typeof value === "object";

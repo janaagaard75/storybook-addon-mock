@@ -3,10 +3,10 @@ import { Form, Placeholder, TabsState } from "@storybook/components";
 import { styled } from "@storybook/theming";
 import PropTypes from "prop-types";
 import React from "react";
-import statusTextMap from "../utils/statusMap";
+import { statusTexts } from "../utils/statusTexts";
 import { Card } from "./Card";
 
-const statusCodes = Object.keys(statusTextMap);
+const statusCodes = Object.keys(statusTexts);
 
 const { Field: SBField, Select } = Form;
 
@@ -106,7 +106,7 @@ export const MockItem = ({
           >
             {statusCodes.map((code) => (
               <option key={code} value={code}>
-                {code} - {statusTextMap[code]}
+                {code} - {statusTexts[code]}
               </option>
             ))}
           </Select>

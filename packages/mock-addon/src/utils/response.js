@@ -1,6 +1,6 @@
 import "whatwg-fetch";
 import { defaultResponseHeaders } from "./headers";
-import statusTextMap from "./statusMap";
+import { statusTexts } from "./statusTexts";
 
 export function CustomResponse(url, status, responseText) {
   const text =
@@ -11,7 +11,7 @@ export function CustomResponse(url, status, responseText) {
   return new Response(text, {
     ok: ((status / 100) | 0) === 2, // 200-299
     status: status,
-    statusText: statusTextMap[status.toString()],
+    statusText: statusTexts[status.toString()],
     headers: new Headers({
       ...defaultResponseHeaders,
     }),
