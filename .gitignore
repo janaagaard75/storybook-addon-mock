@@ -1,25 +1,15 @@
-# IDE files
-.idea
-.vscode
+# Dependencies
+node_modules/
 
-# dependencies
-node_modules
-**/node_modules
+# Log files
+/*.log
 
-#error files
-yarn-error.log
-
-#build files
-dist
-
-#lock files
-package-lock.json
+# Build files
+dist/
+storybook-static/
 
 # OS Files
 .DS_Store
-
-# ignore static storybook
-**/storybook-static
 
 # Yarn
 .yarn/*
