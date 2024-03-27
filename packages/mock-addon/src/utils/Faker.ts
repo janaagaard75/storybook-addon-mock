@@ -32,6 +32,10 @@ export class Faker {
     this.ignoreQueryParams = false;
   }
 
+  private ignoreQueryParams: boolean;
+  private MockXhr;
+  private requestMap: Record<string, any>;
+
   getRequests = () => Object.values(this.requestMap);
 
   getKey = (url = "", searchParamKeys = [], method = "GET") =>
@@ -94,7 +98,7 @@ export class Faker {
     }
   };
 
-  matchMock = (url, method = "GET") => {
+  private matchMock = (url: string, method = "GET") => {
     const { path, searchParamKeys } = getNormalizedUrl(url);
 
     for (let key in this.requestMap) {
@@ -162,7 +166,7 @@ export class Faker {
     });
   };
 
-  mockXhrRequest = (request) => {
+  private mockXhrRequest = (this: MockXhrRequest, request: MockXhrRequest) => {
     const { method, url, body } = request;
     const matched = this.matchMock(url, method);
     if (matched) {
