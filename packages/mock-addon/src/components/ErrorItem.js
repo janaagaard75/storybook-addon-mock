@@ -1,7 +1,7 @@
 import { styled } from "@storybook/theming";
 import PropTypes from "prop-types";
 import React from "react";
-import { Card } from "../Card";
+import { Card } from "./Card";
 
 const Container = styled.div`
   padding: 1rem;

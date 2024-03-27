@@ -1,7 +1,7 @@
 import { styled } from "@storybook/theming";
 import PropTypes from "prop-types";
 import React from "react";
-import { ButtonToggle } from "../ButtonToggle";
+import { ButtonToggle } from "./ButtonToggle";
 
 const Container = styled.div`
   margin: 1rem;

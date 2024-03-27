@@ -3,8 +3,8 @@ import { Form, Placeholder, TabsState } from "@storybook/components";
 import { styled } from "@storybook/theming";
 import PropTypes from "prop-types";
 import React from "react";
-import statusTextMap from "../../utils/statusMap";
-import { Card } from "../Card";
+import statusTextMap from "../utils/statusMap";
+import { Card } from "./Card";
 
 const statusCodes = Object.keys(statusTextMap);
 
