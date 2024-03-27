@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import { newMockXhr } from "mock-xmlhttprequest";
 import { match } from "path-to-regexp";
-import { CustomResponse } from "./CustomResponse";
+import { JsonResponse } from "./JsonResponse";
 import { Request } from "./Request";
 import { arraysContainsTheSameElements } from "./arraysContainsTheSameElements";
 import { defaultResponseHeaders } from "./defaultResponseHeaders";
@@ -138,9 +138,9 @@ export class Faker {
     return new Promise((resolve, reject) => {
       const timeoutId = setTimeout(() => {
         if (typeof response === "function") {
-          resolve(CustomResponse(url, status, response(request)));
+          resolve(new JsonResponse(status, response(request)));
         } else {
-          resolve(CustomResponse(url, status, response));
+          resolve(new JsonResponse(status, response));
         }
 
         mockResponseSent = true;
