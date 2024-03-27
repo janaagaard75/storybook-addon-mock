@@ -1,9 +1,0 @@
-# dependencies
-node_modules
-
-#build files
-dist
-
-# ignore static storybook
-
-storybook-static
