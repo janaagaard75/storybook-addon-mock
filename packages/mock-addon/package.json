@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nutboltu/storybook-addon-mock.git"
+    "url": "https://github.com/janaagaard75/storybook-addon-mock.git"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
