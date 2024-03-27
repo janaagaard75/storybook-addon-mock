@@ -1,14 +1,12 @@
 /* eslint-disable no-restricted-globals */
 import { newMockXhr } from "mock-xmlhttprequest";
 import { match } from "path-to-regexp";
+import { CustomResponse } from "./CustomResponse";
+import { Request } from "./Request";
 import { arrayEquals } from "./array";
-import {
-  defaultResponseHeaders,
-  getResponseHeaderMap,
-  setRequestHeaders,
-} from "./headers";
-import { Request } from "./request";
-import { CustomResponse } from "./response";
+import { defaultResponseHeaders } from "./defaultResponseHeaders";
+import { getResponseHeaderMap } from "./getResponseHeaderMap";
+import { setRequestHeaders } from "./setRequestHeaders";
 import { getNormalizedUrl } from "./url";
 import { schema, validate } from "./validator";
 

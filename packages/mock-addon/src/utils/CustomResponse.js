@@ -1,5 +1,5 @@
 import "whatwg-fetch";
-import { defaultResponseHeaders } from "./headers";
+import { defaultResponseHeaders } from "./defaultResponseHeaders";
 import { statusTexts } from "./statusTexts";
 
 export function CustomResponse(url, status, responseText) {

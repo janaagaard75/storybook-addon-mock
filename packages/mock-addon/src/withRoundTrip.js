@@ -1,7 +1,7 @@
 import { addons } from "@storybook/addons";
 import { FORCE_RE_RENDER, STORY_CHANGED } from "@storybook/core-events";
+import faker from "./utils/Faker";
 import { EVENTS, GLOBAL_PARAM_KEY, PARAM_KEY } from "./utils/constants";
-import faker from "./utils/faker";
 
 const getParameter = (parameters, key, defaultValue) => {
   return parameters[key] || defaultValue;

@@ -1,4 +1,5 @@
 {
+  "cSpell.words": ["xmlhttprequest"],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always"
   },

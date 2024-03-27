@@ -27,13 +27,11 @@ describe("CustomResponse", () => {
   it("should return text as a string if responseText is an object", async () => {
     const response = new CustomResponse(mockURL, 200, { key: "test" });
     const actual = await response.text();
-    // eslint-disable-next-line prettier/prettier
     expect(actual).toEqual('{"key":"test"}');
   });
   it("should return responseText in json()", async () => {
     const response = new CustomResponse(mockURL, 200, { key: "test" });
     const actual = await response.json();
-    // eslint-disable-next-line prettier/prettier
     expect(actual).toEqual({ key: "test" });
   });
   it("should return a response with headers that contain required properties and methods", async () => {
