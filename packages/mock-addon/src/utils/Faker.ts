@@ -1,39 +1,49 @@
 /* eslint-disable no-restricted-globals */
-import { newMockXhr } from "mock-xmlhttprequest";
+import { MockXhr, newMockXhr } from "mock-xmlhttprequest";
 import { match } from "path-to-regexp";
 import { JsonResponse } from "./JsonResponse";
 import { Request } from "./Request";
-import { arraysContainsTheSameElements } from "./arraysContainsTheSameElements";
+import { arraysAreEquivalent } from "./arraysAreEquivalent";
 import { defaultResponseHeaders } from "./defaultResponseHeaders";
 import { getResponseHeaderMap } from "./getResponseHeaderMap";
 import { setRequestHeaders } from "./setRequestHeaders";
 import { getNormalizedUrl } from "./url";
 import { schema, validate } from "./validator";
 
-let global =
+// declare global {
+//   var realFetch: typeof fetch;
+//   var realXMLHttpRequest: typeof XMLHttpRequest;
+//   var fetch: typeof fetch;
+// }
+
+const global =
   // eslint-disable-next-line no-undef
   (typeof globalThis !== "undefined" && globalThis) ||
   (typeof self !== "undefined" && self) ||
   (typeof global !== "undefined" && global) ||
   {};
 
+// Extract types since mock-xmlhttprequest doesn't export them.
+type OnSendCallback = Exclude<(typeof MockXhr)["onSend"], undefined>;
+type MockXhrRequest = Parameters<OnSendCallback>[0];
+
 export class Faker {
   constructor() {
-    this.MockXhr = newMockXhr();
-    this.MockXhr.onSend = this.mockXhrRequest;
+    this.LocalMockXhr = newMockXhr();
+    this.LocalMockXhr.onSend = this.mockXhrRequest;
 
     global.realFetch = global.fetch;
     global.realXMLHttpRequest = global.XMLHttpRequest;
 
     global.fetch = this.mockFetch;
-    global.XMLHttpRequest = this.MockXhr;
+    global.XMLHttpRequest = this.LocalMockXhr;
 
     this.requestMap = {};
     this.ignoreQueryParams = false;
   }
 
   private ignoreQueryParams: boolean;
-  private MockXhr;
+  private LocalMockXhr: typeof MockXhr;
   private requestMap: Record<string, any>;
 
   getRequests = () => Object.values(this.requestMap);
@@ -43,7 +53,7 @@ export class Faker {
       ? [url, ...searchParamKeys, method.toLowerCase()].join("_")
       : "";
 
-  makeInitialRequestMap = (requests) => {
+  makeInitialRequestMap = (requests: Array<any>) => {
     if (!requests || !Array.isArray(requests)) {
       return;
     }
@@ -58,7 +68,7 @@ export class Faker {
     this.ignoreQueryParams = value;
   };
 
-  add = (request) => {
+  add = (request: Request) => {
     const { path, searchParamKeys } = getNormalizedUrl(request.url);
     const key = this.getKey(path, searchParamKeys, request.method);
     const errors = validate(request, schema);
@@ -73,8 +83,8 @@ export class Faker {
 
     this.requestMap[key] = {
       ...request,
-      path,
-      searchParamKeys,
+      path: path,
+      searchParamKeys: searchParamKeys,
       method: request.method || "GET",
       status: request.status || 200,
       delay: request.delay || 0,
@@ -121,7 +131,7 @@ export class Faker {
   matchQueryParams = (searchParams, requestSearchParams) => {
     return (
       this.ignoreQueryParams ||
-      arraysContainsTheSameElements(searchParams, requestSearchParams)
+      arraysAreEquivalent(searchParams, requestSearchParams)
     );
   };
 
@@ -166,9 +176,10 @@ export class Faker {
     });
   };
 
-  private mockXhrRequest = (this: MockXhrRequest, request: MockXhrRequest) => {
+  private mockXhrRequest: OnSendCallback = (request: MockXhrRequest) => {
     const { method, url, body } = request;
     const matched = this.matchMock(url, method);
+
     if (matched) {
       const { response, status, delay = 0 } = matched;
       setTimeout(() => {
