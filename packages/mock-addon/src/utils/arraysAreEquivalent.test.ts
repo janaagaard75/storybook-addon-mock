@@ -1,11 +1,11 @@
-import { arraysContainsTheSameElements } from "./arraysContainsTheSameElements";
+import { arraysAreEquivalent } from "./arraysAreEquivalent";
 
-describe("arraysContainsTheSameElements", () => {
+describe("arraysAreEquivalent", () => {
   it("should match two arrays with the same elements, but in different order.", () => {
     const arrayA = ["jeff", "fred", "cecily"];
     const arrayB = ["fred", "cecily", "jeff"];
 
-    const areEqual = arraysContainsTheSameElements(arrayA, arrayB);
+    const areEqual = arraysAreEquivalent(arrayA, arrayB);
     expect(areEqual).toBe(true);
   });
 
@@ -13,7 +13,7 @@ describe("arraysContainsTheSameElements", () => {
     const arrayA = ["jeff", "fred", "cecily"];
     const arrayB = ["fred", "cecily", "jeff", "jim"];
 
-    const areEqual = arraysContainsTheSameElements(arrayA, arrayB);
+    const areEqual = arraysAreEquivalent(arrayA, arrayB);
     expect(areEqual).toBe(false);
   });
 });

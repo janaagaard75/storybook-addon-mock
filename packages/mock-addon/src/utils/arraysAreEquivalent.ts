@@ -1,4 +1,5 @@
-export function arraysContainsTheSameElements(
+/** Returns true if two arrays contain the same elements, regardless of their order. */
+export function arraysAreEquivalent(
   a: ReadonlyArray<any>,
   b: ReadonlyArray<any>
 ): boolean {
